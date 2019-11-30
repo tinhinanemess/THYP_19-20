@@ -1,0 +1,56 @@
+body {
+  font-family: 'Roboto';
+  color: #333;
+  background-color: #F9F7EB;
+}
+
+
+.legend {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 10px 10px;
+  font-size: 12px;
+}
+
+.legend .item {
+  line-height: 12px;
+  padding: 0 10px 0 4px;
+}
+
+.item {
+  display: block;
+}
+
+.legend .item.besoin-urgent {
+  border-left: 12px solid #BB2C0D;
+}
+
+.legend .item.pas-besoin {
+  border-left: 12px solid #936960;
+}
+
+.legend .item.besoin-app {
+  border-left: 12px solid #3B0F06;
+}
+
+.legend .item.connais-pas {
+  border-left: 12px solid #DF961E;
+}
+
+.legend .item.connais-peu {
+  border-left: 12px solid #B2740D;
+}
+
+.legend .item.connais-bien {
+  border-left: 12px solid #7D1231;
+}
+
+.legend .item.expert {
+  border-left: 12px solid #DCA973;
+}
+
+#chart-wrapper {
+  margin-top: 100px;
+  height: 700px;
+}
+
