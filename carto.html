@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cartographie</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>    
+    <script src="js/Leaflet.CountrySelect.js"></script>
+    <script src="js/leaflet.ajax.min.js"></script>
+    <script src="js/countries.geo.json"></script>
+    <script src='//d3js.org/d3.v5.min.js'></script>
+
+
+    <style>
+        #mapid { 
+            height: 400px; 
+            width: 800px;
+        }        
+    </style>
+</head>
+<body>
+
+        <h1 style="text-align:justify; font-size: larger;display: flex;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Pays visités par: <div style="color: #E9967A;">Tinhinane MESSAOUDI  </div></h1>
+        <p style="font-size: medium;color:black;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Cliquez sur les pays colorés pour voir le nombre de fois visité</p>
+    <div id="mapid"></div>
+
+    <script>
+        var map = L.map('mapid').setView([0, 0], 1);   
+        
+        var cartodbAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution">CARTO</a>';
+
+        var positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            attribution: cartodbAttribution
+        }).addTo(map);
+
+        var select = L.countrySelect({exclude:"French Southern and Antarctic Lands"});
+        //var pays = 
+        select.addTo(map);
+
+        select.on('change', function(e){
+            if (e.feature === undefined){ //Do nothing on title
+                return;
+            }
+            var country = L.geoJson(e.feature, {onEachFeature: onEachFeature});
+            if (this.previousCountry != null){
+                map.removeLayer(this.previousCountry);
+            }
+            this.previousCountry = country;
+            var layer = map.addLayer(country);
+            map.fitBounds(country.getBounds());
+            
+            
+        });
+
+        //charge les limites des pays
+        //var geojsonLayer = new L.GeoJSON.AJAX("js/countries.geo.json").addTo(map);
+
+        //défini l'échelle de couleur
+        var colorScale = d3.scaleSequential()
+        .domain([0, 15])
+        //.interpolator(d3['interpolatePlasma']);      
+        /*
+            var c = colorScale(20);
+            c = colorScale(0);
+            c = colorScale(100);
+            */      
+        //définie le style du pays
+        //merci à https://leafletjs.com/examples/choropleth/  
+              
+       
+        var nbAlea = d3.randomUniform(0, 100);
+        function style(feature) {
+            //console.log(feature.id);
+            if(feature.id === "DZA" || feature.id === "FRA" || feature.id === "TUN" || feature.id === "ESP" || feature.id === "ITA"| feature.id === "TUR"){
+                return {
+                //fillColor: colorScale(feature.properties.density),
+                fillColor: "#FF00FF",
+                weight: 2,
+                opacity: 1,
+                color: 'blue',
+                dashArray: '150',
+                fillOpacity: 3,
+                text : "test"
+            };
+        }else{
+            return {
+                //fillColor: colorScale(feature.properties.density),
+                fillColor: colorScale(nbAlea()),
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: '1',
+                fillOpacity: 0.7
+            };
+        }
+
+    }
+
+        //charge les limites des pays avec leur style
+        L.geoJson(statesData,{onEachFeature: onEachFeature, style: style}).addTo(map);
+
+            function onEachFeature(feature, layer) {
+
+            switch(feature.id){
+                case "DZA": layer.bindPopup("Pays natal"); break;
+                case "FRA": layer.bindPopup("Pays de résidence"); break;
+                case "ESP": layer.bindPopup("visité 1 fois"); break;
+                case "TUN": layer.bindPopup("visité 1 fois"); break;
+                case "TUR": layer.bindPopup("visité 3 fois"); break;
+                case "ITA": layer.bindPopup("visité 1 fois"); break;
+
+            }
+}
+
+
+</script>
+</body>
+</html> 

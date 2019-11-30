@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="description" content="Use Viewer to start building new applications or easily embed Cesium into existing applications.">
+    <meta name="cesium-sandcastle-labels" content="Beginner, Showcases">
+    <title>Cesium Demo</title>
+    <script type="text/javascript" src="js/cesium/Apps/Sandcastle/Sandcastle-header.js"></script>
+    <script type="text/javascript" src="js/cesium/Build/CesiumUnminified/Cesium.js" ></script>
+
+</head>
+<body class="sandcastle-loading" data-sandcastle-bucket="bucket-requirejs.html">
+<style>
+    @import url(js/cesium/Apps/Sandcastle/templates/bucket.css);
+</style>
+<div id="cesiumContainer" class="fullSize"></div>
+<div id="loadingOverlay">
+    <h1>Loading...</h1>
+</div>
+<div id="toolbar"></div>
+<script id="cesium_sandcastle_script">
+function startup(Cesium) {
+    'use strict';
+//Sandcastle_Begin
+// Grant CesiumJS access to your ion assets
+Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5ZDM0MjJjOC0zMDEwLTQ4YWUtYmUxOS1hYWUxYzAyOWE2NmEiLCJpZCI6MTc3NjUsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NzI3Nzk3OTl9.Vcyq9iUrthFYxXHalnPv95IHSBJVxh2B5MifX5BfrtY';
+
+var viewer = new Cesium.Viewer('cesiumContainer');
+
+    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('js/Algeria.topojson', {
+        stroke: Cesium.Color.HOTPINK,
+        fill: Cesium.Color.YELLOW.withAlpha(0.5),
+        strokeWidth: 3
+    }));
+
+    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('js/France.topojson', {
+        stroke: Cesium.Color.HOTPINK,
+        fill: Cesium.Color.GREEN.withAlpha(0.5),
+        strokeWidth: 3
+    }));
+    
+    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('js/Turkey.topojson', {
+        stroke: Cesium.Color.HOTPINK,
+        fill: Cesium.Color.RED.withAlpha(0.5),
+        strokeWidth: 3
+    }));
+
+    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('js/Spain.topojson', {
+        stroke: Cesium.Color.HOTPINK,
+        fill: Cesium.Color.ORANGE.withAlpha(0.5),
+        strokeWidth: 3
+    }));
+
+    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('js/Italy.topojson', {
+        stroke: Cesium.Color.HOTPINK,
+        fill: Cesium.Color.BLUEVIOLET.withAlpha(0.5),
+        strokeWidth: 3
+    }));
+
+    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('js/Tunisia.topojson', {
+        stroke: Cesium.Color.HOTPINK,
+        fill: Cesium.Color.BROWN.withAlpha(0.5),
+        strokeWidth: 3
+    }));
+    
+
+var imageryLayer = viewer.imageryLayers.addImageryProvider(
+    new Cesium.IonImageryProvider({ assetId: 3 })
+);
+
+viewer.zoomTo(imageryLayer)
+    .otherwise(function (error) {
+        console.log(error);
+    });
+    
+//Sandcastle_End
+    Sandcastle.finishedLoading();
+}
+if (typeof Cesium !== 'undefined') {
+    window.startupCalled = true;
+    startup(Cesium);
+}
+
+
+</script>
+
+<div style="background-color: blueviolet; width: 80px; height: 30px; position: relative;display:flex ;">
+        <span style="color: black ;font-weight:bold; text-align: center;"> visité 1 fois</span></div>
+    
+    <div style="background-color: yellow; width: 80px; height: 30px; position: relative;display:flex ;">
+        <span style="color: black ;font-weight:bold; text-align: center;"> Pays natal</span></div>
+    
+    <div style="background-color: green; width: 80px; height: 30px; position: relative;display:flex ;">
+        <span style="color: black ;font-weight:bold; text-align: left;"> Pays de residence</span></div>
+                    
+    <div style="background-color: red; width: 80px; height: 30px; position: relative;display:flex ;">
+        <span style="color: black ;font-weight:bold; text-align: center;"> visité 3 fois</span></div>   
+                
+    <div style="background-color: orange; width: 80px; height: 30px; position: relative;display:flex ;">
+        <span style="color: black ;font-weight:bold; text-align: center;"> visité 1 fois</span></div>
+    
+    <div style="background-color: brown; width: 80px; height: 30px; position: relative;display:flex ;">
+        <span style="color: black ;font-weight:bold; text-align: center;"> visité 1 fois</span></div> 
+</body>
+</html>
