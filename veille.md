@@ -1,6 +1,8 @@
 #Veille technologique
 
 La veille technologique m'informe sur toute l'actualité, avant je faisais la veille avec une simple recherche suur googl, réseaux sociaux, mais cette année j'ai découvert des outils important tel que: Netvibes et Diigo
+
+
 ##Diigo
 
 J'ai utilisé diigo pour sauvgarder les pages web qui m'interesse . ce dernier m'a proposé de nombreuses fonctionnalités telle que: le surlignage pour les phrases les plus importante et la conservation d’extraits de pages web.
