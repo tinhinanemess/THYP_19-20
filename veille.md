@@ -1,6 +1,6 @@
 #Veille technologique
 
-La veille technologique m'informe sur toute l'actualité, avant je faisais la veille avec une simple recherche suur googl, réseaux sociaux, mais cette année j'ai découvert des outils important tel que: Netvibes et Diigo
+La veille technologique m'informe sur toute l'actualité, avant je faisais la veille avec une simple recherche suur google, les réseaux sociaux, mais cette année j'ai découvert des outils important tels que: Netvibes et Diigo
 
 
 ##Diigo
